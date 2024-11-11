@@ -24,6 +24,7 @@ interface Article {
 interface LastPageValues {
   totalPages: number;
   articles: Article[];
+  pages: any;
 }
 
 export function useGetBestArticle() {
@@ -46,22 +47,28 @@ export function useFreeBoardArticlesList({
   const router = useRouter();
   const { keyword } = router.query;
 
-  const { data, fetchNextPage, isLoading, isError, error } = useInfiniteQuery({
+  const { data, fetchNextPage, isLoading, isError, error } = useInfiniteQuery<
+    LastPageValues,
+    Error,
+    LastPageValues,
+    [string, string, string | string[] | undefined, number]
+  >({
     queryKey: ['articles', orderBy, keyword, limit],
     queryFn: ({ pageParam = 1 }) =>
       fetchFreeBoardApi({ sort: orderBy, keyword, page: pageParam }),
-    getNextPageParam: (lastPage: LastPageValues, pages) => {
+    getNextPageParam: (lastPage, pages) => {
       const nextPage = pages.length + 1;
       return nextPage <= lastPage.totalPages ? nextPage : undefined; // 단순히 `number`를 반환
     },
     refetchInterval: 300000,
+    initialPageParam: null,
   });
 
   const uniqueArticles = Array.from(
     new Map(
       data?.pages
-        .flatMap((page) => page?.articles)
-        .map((article) => [article.id, article])
+        .flatMap((page: any) => page?.articles)
+        .map((article: any) => [article.id, article])
     ).values() || []
   );
 

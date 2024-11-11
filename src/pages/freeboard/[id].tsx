@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import backBtn from '@/public/btn_back.png';
-import Comments from '../../components/Comment/Comments.js';
+import backBtn from '../../../public/btn_back.png';
+import Comments from '../../components/Comment/Comments';
 import ArticleDetailInfo from '../../components/ArticleDetail/ArticleDetailInfo';
-import styles from '@/styles/Article.module.css';
-import { useGetArticle } from '../../hooks/useFreeBoard.jsx';
+import styles from '../../styles/Article.module.css';
+import { useGetArticle } from '../../hooks/useFreeBoard';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 

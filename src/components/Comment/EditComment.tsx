@@ -1,5 +1,5 @@
 import { CommentButton, CommentCancelButton } from '../../utils/Button';
-import styles from '@/styles/Comment.module.css';
+import styles from '../../styles/Comment.module.css';
 import { useEditComment } from '../../hooks/useComments';
 import { useState } from 'react';
 
@@ -26,7 +26,7 @@ export default function EditComment({
   const { editCommentMutation } = useEditComment({ articleId });
 
   const handleSubmit = () => {
-    editCommentMutation.mutate({ id: commentId, editComment, articleId });
+    editCommentMutation.mutate({ id: commentId, editComment });
     setEditId(null);
     setIsOpenDropDown(false);
   };

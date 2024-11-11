@@ -2,26 +2,21 @@ import { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
 import EditComment from './EditComment';
 import DropDown from '../../utils/DropDown';
-import dotIcon from '@/public/ic_dot.png';
-import noComment from '@/public/no_comment.png';
-import noAsk from '@/public/no_ask.png';
+import dotIcon from '../../../public/ic_dot.png';
+import noComment from '../../../public/no_comment.png';
+import noAsk from '../../../public/no_ask.png';
 import { UserInfo } from './UserInfo';
 import { useUserAuth } from '../../context/UserContextProvider';
-import styles from '@/styles/Comment.module.css';
+import styles from '../../styles/Comment.module.css';
 import toast from 'react-hot-toast';
 import React from 'react';
+import { Comment } from '../../hooks/useComments';
 
-export interface Comment {
+export interface CommentsListValues {
   articleId: string | string[] | undefined;
-  comments: Comments[];
+  comments: Comment[];
   onCommentDeleteId: any;
   category: string;
-}
-
-interface Comments {
-  id: string;
-  content: string;
-  length: number;
 }
 
 export default function CommentList({
@@ -29,7 +24,7 @@ export default function CommentList({
   comments,
   onCommentDeleteId,
   category,
-}: Comment) {
+}: CommentsListValues) {
   const [commentId, setCommentId] = useState('');
   const [isOpenDropDown, setIsOpenDropDown] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);

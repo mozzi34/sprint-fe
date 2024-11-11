@@ -16,10 +16,11 @@ interface UseCommentValues {
   category: string;
 }
 
-interface Comment {
+export interface Comment {
   id: string;
   content: string;
   userId: string;
+  length?: number;
 }
 
 export interface Page {
@@ -29,22 +30,22 @@ export interface Page {
 
 export function useComments({ articleId, category }: UseCommentValues) {
   const { data, fetchNextPage, isLoading } = useInfiniteQuery<Page>({
-    queryKey: ['comments', articleId], // 캐시 키로 사용
+    queryKey: ['comments', articleId],
     queryFn: ({ pageParam = null }) =>
-      fetchCommentsApi({ articleId, category, cursorId: pageParam }), // API 호출
+      fetchCommentsApi({ articleId, category, cursorId: pageParam }),
     getNextPageParam: (lastPage: Page) => {
       const comments = lastPage?.comments || [];
       return comments.length > 0 ? comments[comments.length - 1].id : undefined;
     },
-    enabled: !!articleId && !!category, // articleId와 category가 있을 때만 활성화
+    enabled: !!articleId && !!category,
+    initialPageParam: null,
   });
 
-  // 중복 댓글을 제거한 유니크한 댓글 리스트 생성
   const uniqueComments = Array.from(
     new Map(
       data?.pages
         .flatMap((page) => page?.comments || [])
-        .map((comment) => [comment.id, comment]) // 댓글 id를 키로 사용하는 Map
+        .map((comment) => [comment.id, comment])
     ).values() || []
   );
 
@@ -81,15 +82,8 @@ export function useEditComment({ articleId }: any) {
   });
 
   const editCommentMutation = useMutation({
-    mutationFn: ({
-      id,
-      editComment,
-      articleId,
-    }: {
-      id: string;
-      editComment: string;
-      articleId: string | string[] | undefined;
-    }) => editCommentApi({ id, editComment }),
+    mutationFn: ({ id, editComment }: { id: string; editComment: string }) =>
+      editCommentApi({ id, editComment }),
     onSuccess: (newComment) => {
       queryClient.setQueryData(['comments', articleId], (previous: any) => {
         if (!previous) return [];

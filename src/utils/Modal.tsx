@@ -1,5 +1,5 @@
-import styles from '@/styles/Modal.module.css';
-import checkIcon from '@/public/ic_modal_check.png';
+import styles from '../styles/Modal.module.css';
+import checkIcon from '../../public/ic_modal_check.png';
 import Image from 'next/image';
 
 export function AuthModal({ errorMsg, setIsShowModal }: any) {

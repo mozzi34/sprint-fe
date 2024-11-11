@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Tag } from '../../pages/fleamarket/edit/[id]';
 
 const instance = axios.create({
   baseURL: 'https://sprint-be-ztdn.onrender.com/fleamarket',
@@ -10,14 +11,14 @@ interface FetchFleaMarketApiParams {
   page: number | undefined;
 }
 
-interface FetchFleaMarketApiContent {
-  id?: string;
+export interface FetchFleaMarketApiContent {
+  id?: string | string[] | undefined;
   title: string;
   content: string;
-  images: string[];
-  price: string;
+  images: File[] | string[];
+  price: string | undefined;
   userId: string;
-  tags: string | Blob;
+  tags: string[];
 }
 
 interface FetchFleaMarketApiId {
@@ -106,8 +107,13 @@ export async function postFleaMarketArticleApi({
       formData.append('images', file);
     });
 
-    formData.append('tags', tags);
-    formData.append('price', price);
+    tags.forEach((tag) => {
+      formData.append('tags', tag);
+    });
+
+    if (typeof price === 'string') {
+      formData.append('price', price);
+    }
 
     for (let [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
@@ -151,8 +157,13 @@ export async function editFleaMarketArticleApi({
       formData.append('images', file);
     });
 
-    formData.append('tags', tags);
-    formData.append('price', price);
+    tags.forEach((tag) => {
+      formData.append('tags', tag);
+    });
+
+    if (typeof price === 'string') {
+      formData.append('price', price);
+    }
 
     for (let [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);

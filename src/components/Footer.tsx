@@ -1,8 +1,8 @@
-import footerLogo from '../public/codeit.png';
-import facebookIcon from '../public/sns_icon/ic_facebook.png';
-import youtuveIcon from '../public/sns_icon/ic_youtuve.png';
-import instaIcon from '../public/sns_icon/ic_insta.png';
-import twitterIcon from '../public/sns_icon/ic_twitter.png';
+import footerLogo from '../../public/codeit.png';
+import facebookIcon from '../../public/sns_icon/ic_facebook.png';
+import youtuveIcon from '../../public/sns_icon/ic_youtuve.png';
+import instaIcon from '../../public/sns_icon/ic_insta.png';
+import twitterIcon from '../../public/sns_icon/ic_twitter.png';
 import Image from 'next/image';
 import styles from '../styles/Footer.module.css';
 

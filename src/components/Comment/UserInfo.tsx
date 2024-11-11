@@ -1,6 +1,6 @@
-import styles from '@/styles/Comment.module.css';
+import styles from '../../styles/Comment.module.css';
 import Image from 'next/image';
-import profileIcon from '@/public/ic_profile.png';
+import profileIcon from '../../../public/ic_profile.png';
 
 interface Date {
   createDate: Date;

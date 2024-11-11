@@ -1,4 +1,4 @@
-import styles from '@/styles/ArticleFormFields.module.css';
+import styles from '../../styles/ArticleFormFields.module.css';
 import { ArticleValueWithOnChange } from './ContentInput';
 
 export default function TitleInput({

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import styles from '@/styles/ArticleFormFields.module.css';
-import { ArticleButton } from '../../utils/Button.js';
+import styles from '../../styles/ArticleFormFields.module.css';
+import { ArticleButton } from '../../utils/Button';
 import TitleInput from '../../components/Post/TitleInput';
 import ContentInput from '../../components/Post/ContentInput';
 import { useEditArticle } from '../../hooks/useFreeBoard';

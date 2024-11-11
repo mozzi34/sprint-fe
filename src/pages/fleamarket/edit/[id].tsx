@@ -14,6 +14,7 @@ import {
 } from '../../../hooks/useFleaMarket';
 import { useUserAuth } from '../../../context/UserContextProvider';
 import toast from 'react-hot-toast';
+import { FetchFleaMarketApiContent } from '../../../utils/api/fleaMarketApi';
 
 export interface Article {
   id?: string | string[] | undefined;
@@ -21,12 +22,15 @@ export interface Article {
   content: string;
   price?: string;
   images?: File[] | undefined;
-  tags?: Tags | Tags[];
-  userId?: string;
 }
 
-export interface Tags {
-  tags: string[];
+export interface ArticleWithUser extends Article {
+  tags?: string[];
+  userId: string;
+}
+
+export interface Tag {
+  tags: string;
 }
 
 // export interface User {
@@ -37,7 +41,7 @@ export default function EditArticlePage() {
   const { user } = useUserAuth();
   const router = useRouter();
   const [canSubmit, setCanSubmit] = useState(true);
-  const [tags, setTags] = useState<Tags[]>([]);
+  const [tags, setTags] = useState<Tag[]>([]);
 
   const { id } = router.query;
   const { data, isLoading } = useGetArticleDetail({
@@ -60,8 +64,8 @@ export default function EditArticlePage() {
       content: values.content,
       price: values.price,
       images: values.images || [],
-      tags: tags || [],
-    });
+      tags: tags.map((tag) => tag.tags) || [],
+    } as ArticleWithUser);
   };
 
   const onChange = (

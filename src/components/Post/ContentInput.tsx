@@ -1,4 +1,4 @@
-import styles from '@/styles/ArticleFormFields.module.css';
+import styles from '../../styles/ArticleFormFields.module.css';
 import { Article } from '../../pages/fleamarket/edit/[id]';
 
 export interface ArticleValueWithOnChange {

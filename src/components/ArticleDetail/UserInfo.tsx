@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import React from 'react';
-import line from '@/public/heartLine.png';
-import profileIcon from '@/public/ic_profile.png';
-import heartIcon from '@/public/ic_heart.png';
-import heartFullIcon from '@/public/ic_heart_full.png';
+import line from '../../../public/heartLine.png';
+import profileIcon from '../../../public/ic_profile.png';
+import heartIcon from '../../../public/ic_heart.png';
+import heartFullIcon from '../../../public/ic_heart_full.png';
 import DateFormat from '../../utils/DateFormat';
 import { postFavoriteApi, deleteFavoriteApi } from '../../utils/api/favorite';
-import styles from '@/styles/Article.module.css';
+import styles from '../../styles/Article.module.css';
 import { ArticleProps } from './ArticleDetailInfo';
 
 export function UserInfo({ article }: ArticleProps) {

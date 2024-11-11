@@ -12,7 +12,9 @@ import { ArticleDeleteModal } from '../../utils/Modal';
 import toast from 'react-hot-toast';
 import { useUserAuth } from '../../context/UserContextProvider';
 import { Article } from '../ArticleDetail/ArticleDetailInfo';
-
+import { ArticleWithUser } from '../../pages/fleamarket/edit/[id]';
+import { UserInfo } from '../ArticleDetail/UserInfo';
+import { User } from '../ArticleDetail/ArticleDetailInfo';
 export interface ArticleDetailValues {
   article: ArticleDetailWithLike;
   isLiked: boolean;
@@ -20,8 +22,9 @@ export interface ArticleDetailValues {
   category?: string;
 }
 
-export interface ArticleDetailWithLike extends Article {
+export interface ArticleDetailWithLike extends ArticleWithUser {
   favoriteCount: number;
+  user: User;
 }
 
 export default function ArticleDetailInfo({
@@ -51,8 +54,6 @@ export default function ArticleDetailInfo({
       router.push(`/${category}`);
     }
   };
-
-  // useCallback 사용
 
   const handleDropDown = useCallback(() => {
     if (article.userId === user?.id) {
@@ -133,7 +134,7 @@ export default function ArticleDetailInfo({
 
           <div className={styles.itemTitleText}>상품 태그</div>
           {article.tags?.map((tag, index) => (
-            <li key={index} className={styles.hashtags}>
+            <li key={tag} className={styles.hashtags}>
               <span className={styles.hashtagTitle}># {tag}</span>
             </li>
           ))}

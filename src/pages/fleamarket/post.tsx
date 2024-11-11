@@ -9,11 +9,11 @@ import FileInput from '../../components/Post/FileInput';
 import PriceInput from '../../components/Post/PriceInput';
 import TagsInput from '../../components/Post/TagsInput';
 import { useUserAuth } from '../../context/UserContextProvider';
-import { Article, Tags } from './edit/[id].jsx';
+import { ArticleWithUser, Article, Tag } from './edit/[id].jsx';
 
 export default function PostFleaArticlePage() {
   const [isPostSubmit, setIsPostSubmit] = useState(false);
-  const [tags, setTags] = useState<Tags>({ tags: [] });
+  const [tags, setTags] = useState<Tag[]>([]);
   const [values, setValues] = useState<Article>({
     title: '',
     content: '',
@@ -27,13 +27,13 @@ export default function PostFleaArticlePage() {
 
   const handleSubmit = async () => {
     try {
-      const newPost: Article = {
+      const newPost: ArticleWithUser = {
         title: values.title,
         content: values.content,
         price: values.price,
         images: values.images || [],
-        tags: tags || [],
-        userId: user?.id,
+        tags: tags.map((tag) => tag.tags) || [],
+        userId: user?.id as string,
       };
       postArticle(newPost);
     } catch (error) {

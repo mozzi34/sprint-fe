@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { CommentButton } from '../../utils/Button';
 import CommentList from './CommentList';
-import styles from '@/styles/Comment.module.css';
-import { useComments, useEditComment } from '../../hooks/useComments.jsx';
+import styles from '../../styles/Comment.module.css';
+import { useComments, useEditComment } from '../../hooks/useComments';
 import useScroll from '../../hooks/useScroll';
 import { useRouter } from 'next/router';
 import { useUserAuth } from '../../context/UserContextProvider';

@@ -3,12 +3,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { postUserLogInApi } from '../utils/api/userApi';
 import Image from 'next/image';
-import styles from '@/styles/Login.module.css';
-import logo from '@/public/login_logo.png';
-import eyeOpen from '@/public/login_eye_open.png';
-import eyeClose from '@/public/login_eye_close.png';
-import kakaoIcon from '@/public/sns_icon/ic_kakao.png';
-import googleIcon from '@/public/sns_icon/ic_google.png';
+import styles from '../styles/Login.module.css';
+import logo from '../../public/login_logo.png';
+import eyeOpen from '../../public/login_eye_open.png';
+import eyeClose from '../../public/login_eye_close.png';
+import kakaoIcon from '../../public/sns_icon/ic_kakao.png';
+import googleIcon from '../../public/sns_icon/ic_google.png';
 import { useState } from 'react';
 import { AuthModal } from '../utils/Modal';
 

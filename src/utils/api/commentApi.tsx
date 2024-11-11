@@ -34,7 +34,7 @@ export async function fetchCommentsApi({
   articleId,
   category,
   cursorId,
-}: GetCommentsValue): Promise<Page | undefined> {
+}: GetCommentsValue): Promise<Page> {
   try {
     const accessToken = localStorage.getItem('accessToken');
 
@@ -55,7 +55,10 @@ export async function fetchCommentsApi({
     } as Page;
   } catch (error) {
     console.error('Error fetching data:', error);
-    return undefined;
+    return {
+      comments: [],
+      totalCount: 0,
+    };
   }
 }
 

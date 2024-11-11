@@ -3,22 +3,22 @@ import { useCallback, useState } from 'react';
 import React from 'react';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
-import dotIcon from '@/public/ic_dot.png';
+import dotIcon from '../../../public/ic_dot.png';
 import DropDown from '../../utils/DropDown';
 import { useEditArticle } from '../../hooks/useFreeBoard';
 import { ArticleDeleteModal } from '../../utils/Modal';
 import { UserInfo } from './UserInfo';
-import styles from '@/styles/Article.module.css';
+import styles from '../../styles/Article.module.css';
 
 export interface Article {
   id: string | string[] | undefined;
   title: string;
   content: string;
-  images: string;
+  images: string[];
   favorite: number;
   price?: string;
   user?: User;
-  userId: string | null;
+  userId?: string | null;
   tags?: string[];
 }
 
